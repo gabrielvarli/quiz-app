@@ -1,6 +1,6 @@
 const questions = [
     {
-        questions: 'Vad är Sveriges Huvudstad ?' ,
+        question: 'Vad är Sveriges Huvudstad ?' ,
         answers: [
             {text: 'Göteborg', correct: false},
             {text: 'Stockholm', correct: true},
@@ -9,7 +9,7 @@ const questions = [
         ]
     },
     {
-        questions: 'Vad är Sveriges Huvudstad ?' ,
+        question: 'vart bor det mest invånare i Sverige ?' ,
         answers: [
             {text: 'Göteborg', correct: false},
             {text: 'Stockholm', correct: true},
@@ -18,28 +18,68 @@ const questions = [
         ]
     },
     {
-        questions: 'Vad är Sveriges Huvudstad ?' ,
+        question: 'Hur många invånare bor det i Stockholm ?' ,
         answers: [
-            {text: 'Göteborg', correct: false},
-            {text: 'Stockholm', correct: true},
-            {text: 'Malmö', correct: false},
-            {text: 'Örebro', correct: false},
+            {text: '500 tusen', correct: false},
+            {text: '1,6 miljoner', correct: true},
+            {text: '1 miljon', correct: false},
+            {text: '2 miljoner', correct: false},
         ]
     },
     {
-        questions: 'Vad är Sveriges Huvudstad ?' ,
+        question: 'Hur många invånare bor det i Sverige ?' ,
         answers: [
-            {text: 'Göteborg', correct: false},
-            {text: 'Stockholm', correct: true},
-            {text: 'Malmö', correct: false},
-            {text: 'Örebro', correct: false},
+            {text: '8 miljoner', correct: false},
+            {text: '10 miljoner', correct: true},
+            {text: '9 miljoner', correct: false},
+            {text: '11 miljoner', correct: false},
         ]
     },
 ]
 
 const questionElement = document.getElementById('question');
-const anserButton = document.getElementById('answer-buttons');
+const answerButtons = document.getElementById('answer-buttons');
 const nextButton = document.getElementById('next-btn');
+
+// vad gör denna kod ?
+let currentQuestionIndex = 0;
+let score = 0;
+
+// vad gör denna ?
+function startQuiz(){
+    currentQuestionIndex = 0;
+    score = 0;
+    nextButton.innerHTML = "Next";
+    showQuestion();
+}
+
+// antar att fråge funktioner körs här 
+function showQuestion(){
+    resetState();
+    let currentQuestion = questions[currentQuestionIndex];
+    let questionNo = currentQuestionIndex + 1;
+    questionElement.innerHTML = questionNo + ". " + currentQuestion.question;
+
+    // antar att svar funktionen körs här 
+    currentQuestion.answers.forEach(answer => {
+        const button = document.createElement('button');
+        button.innerHTML = answer.text;
+        button.classList.add('btn');
+        answerButtons.appendChild(button);
+    })
+}
+
+function resetState(){
+    nextButton.style.display = "none"; 
+     while(answerButtons.firstChild){
+        answerButtons.removeChild(answerButton.firstChild)
+     }
+}
+
+startQuiz();
+
+
+// darkmode func
 
 function calculateSettingAsThemeString({ localStorageTheme, systemSettingDark }) {
     if (localStorageTheme !== null) {
