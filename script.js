@@ -101,6 +101,7 @@ let score = 0;
 function startQuiz() {
     currentQuestionIndex = 0;
     score = 0;
+    questionElement.style.color = "#001e4d";
     nextButton.innerHTML = "next";
     showQuestion();
 }
@@ -149,11 +150,22 @@ function selectAnswer(e) {
 
 function showScore(){
     resetState();
-    questionElement.innerHTML = `You scored ${score} out of ${questions.length}!`;
+    //questionElement.innerHTML = `You scored ${score} out of ${questions.length}!`;
+    // Display the user's score
+    const scoreElement = document.getElementById("question");
+    if (score < 5) {
+        scoreElement.style.color = "#ff0000"; // red
+        questionElement.innerHTML = `You scored ${score} out of ${questions.length}! Failure`;
+    } else if (score >= 5 && score <= 7) {
+        scoreElement.style.color = "#ffaa00"; // yellow/orange
+        questionElement.innerHTML = `You scored ${score} out of ${questions.length}! You did Alright`;
+    } else {
+        scoreElement.style.color = "#00aa00"; // green
+        questionElement.innerHTML = `You scored ${score} out of ${questions.length}! Well Done`;
+    } 
     nextButton.innerHTML = "Play Again";
     nextButton.style.display = "block";
 }
-
 function handleNextButton () {
     currentQuestionIndex++;
     if(currentQuestionIndex < questions.length){
