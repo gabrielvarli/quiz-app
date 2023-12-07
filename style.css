@@ -4,9 +4,6 @@
     font-family: 'poppins', sans-serif;
     box-sizing: border-box;
 }
-body {
-    background: #001e4d;
-}
 .app {
     background: #fff;
     width: 90%;
@@ -67,4 +64,33 @@ body {
 }
 .incorrect {
     background: #ff9393;
+}
+
+[data-theme="light"] {
+     --color-bg: #ffffff;
+     --color-fg: #000000;
+ }
+ 
+ [data-theme="dark"] {
+     --color-bg: #000000;
+     --color-fg: #ffffff;
+ }
+ 
+#main-body{
+    background-color: var(--color-bg);
+    color: var(--color-fg);
+    display: grid;
+    min-height: 100vh;
+    place-items: center;
+}
+#btn2{
+    font-size: 2rem;
+    font-weight: bold;
+    padding: 0.5rem 1rem;
+    transition: all var(--global-transition-time) ease-in-out;
+    border-radius: 2rem;
+    cursor: pointer;
+    color: var(--color-fg);
+    background-color: var(--color-bg);
+    border: 0.25rem solid var(--color-fg);
 }
