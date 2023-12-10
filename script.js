@@ -1,5 +1,5 @@
 const questions = [
-    {
+     {
         question: 'Vad är Sveriges Huvudstad ?' ,
         answers: [
             {text: 'Göteborg', correct: false},
@@ -91,13 +91,15 @@ const questions = [
     },
 ]
 
+// hämtar id från html 
 const questionElement = document.getElementById("question");
 const answerButtons = document.getElementById("answer-buttons");
 const nextButton = document.getElementById('next-btn');
 
+// antal frågor och poäng
 let currentQuestionIndex = 0;
 let score = 0;
-
+// denna kod körs i början av quizen och slutet, när den börjar om.
 function startQuiz() {
     currentQuestionIndex = 0;
     score = 0;
@@ -105,12 +107,14 @@ function startQuiz() {
     nextButton.innerHTML = "Next";
     showQuestion();
 }
+// den visar upp vilken fråga du är på 
 function showQuestion() {
     resetState();
     let currentQuestion = questions[currentQuestionIndex];
     let questionNo = currentQuestionIndex + 1;
-    questionElement.innerHTML = questionNo + ". " + currentQuestionIndex.question;
+    questionElement.innerHTML = questionNo + ". " + currentQuestion.question;
 
+    // denna visar svaren (texten)
     currentQuestion.answers.forEach(answer => {
         const button = document.createElement("button");
         button.innerHTML = answer.text;
@@ -122,13 +126,15 @@ function showQuestion() {
         button.addEventListener("click",selectAnswer);
     }) 
 }
-
+// den tar bort gamla frågan och svar
 function resetState(){
     nextButton.style.display = "none";
     while(answerButtons.firstChild){
         answerButtons.removeChild(answerButtons.firstChild);
     }
 }
+// denna kod kollar om man har svarat rätt eller fel 
+// denna ger dig poäng när du svarat rätt 
 function selectAnswer(e) {
     const selectedBtn = e.target;
     const isCorrect = selectedBtn.dataset.correct === "true";
@@ -138,6 +144,8 @@ function selectAnswer(e) {
     }else{
         selectedBtn.classList.add("incorrect");
     }
+    // denna disablar svars alternativ efter du har valt ditt svar
+    // visar även next button för att ta dig till nästa fråga
     Array.from(answerButtons.children).forEach(button => {
         if(button.dataset.correct === "true") {
             button.classList.add("correct");
@@ -147,7 +155,8 @@ function selectAnswer(e) {
     nextButton.style.display = "block";
 
 }
-
+// denna visar hur många rätta svar du har fått
+// samt bedömmer dig med färg o text om du har fått godkänd. 
 function showScore(){
     resetState();
     // Display the user's score
@@ -165,6 +174,8 @@ function showScore(){
     nextButton.innerHTML = "Play Again";
     nextButton.style.display = "block";
 }
+
+// tar dig till nästa fråga eller tar dig till score sidan.
 function handleNextButton () {
     currentQuestionIndex++;
     if(currentQuestionIndex < questions.length){
@@ -184,12 +195,8 @@ nextButton.addEventListener("click", () => {
 
 startQuiz();
 
-/**
-* Utility function to calculate the current theme setting.
-* Look for a local storage value.
-* Fall back to system setting.
-* Fall back to light mode.
-*/
+// darkmode modellen
+// den tar localstorage ( den jag har använt tidigare)  
 function calculateSettingAsThemeString({ localStorageTheme, systemSettingDark }) {
     if (localStorageTheme !== null) {
       return localStorageTheme;
@@ -202,50 +209,33 @@ function calculateSettingAsThemeString({ localStorageTheme, systemSettingDark })
     return "light";
   }
   
-  /**
-  * Utility function to update the button text and aria-label.
-  */
+  // denna byter texten på knappen darkmode
   function updateButton({ buttonEl, isDark }) {
     const newCta = isDark ? "Change to light theme" : "Change to dark theme";
-    // use an aria-label if you are omitting text on the button
-    // and using a sun/moon icon, for example
+    
     buttonEl.setAttribute("aria-label", newCta);
     buttonEl.innerText = newCta;
   }
   
-  /**
-  * Utility function to update the theme setting on the html tag
-  */
+  // hämtar tema från html o css
   function updateThemeOnHtmlEl({ theme }) {
     document.querySelector("html").setAttribute("data-theme", theme);
   }
   
   
-  /**
-  * On page load:
-  */
-  
-  /**
-  * 1. Grab what we need from the DOM and system settings on page load
-  */
+  // variabler på knapp och olika tema
   const button = document.querySelector("[data-theme-toggle]");
   const localStorageTheme = localStorage.getItem("theme");
   const systemSettingDark = window.matchMedia("(prefers-color-scheme: dark)");
   
-  /**
-  * 2. Work out the current site settings
-  */
+  // variabel ser vad de är för färg på sidan o sparar den
   let currentThemeSetting = calculateSettingAsThemeString({ localStorageTheme, systemSettingDark });
   
-  /**
-  * 3. Update the theme setting and button text accoridng to current settings
-  */
+ // läser knappens tidagre färg 
   updateButton({ buttonEl: button, isDark: currentThemeSetting === "dark" });
   updateThemeOnHtmlEl({ theme: currentThemeSetting });
   
-  /**
-  * 4. Add an event listener to toggle the theme
-  */
+  // här byter den färg från ljus till mörk
   button.addEventListener("click", (event) => {
     const newTheme = currentThemeSetting === "dark" ? "light" : "dark";
   
@@ -255,3 +245,5 @@ function calculateSettingAsThemeString({ localStorageTheme, systemSettingDark })
   
     currentThemeSetting = newTheme;
   }); 
+
+
