@@ -36,12 +36,12 @@ const questions = [
         ]
     },
     {
-        question: 'Hur många invånare bor det i Sverige ?' ,
+        question: 'Vilka färger är med i Sveriges flagga ?' ,
         answers: [
-            {text: '8 miljoner', correct: false},
-            {text: '10 miljoner', correct: true},
-            {text: '9 miljoner', correct: false},
-            {text: '11 miljoner', correct: false},
+            {text: 'Röd', correct: false},
+            {text: 'Blå', correct: true},
+            {text: 'Gul', correct: true},
+            {text: 'Lila', correct: false},
         ]
     },
     {
@@ -101,8 +101,8 @@ let score = 0;
 function startQuiz() {
     currentQuestionIndex = 0;
     score = 0;
-    questionElement.style.color = "#001e4d";
-    nextButton.innerHTML = "next";
+    questionElement.style.color = "var(--color-fg)";
+    nextButton.innerHTML = "Next";
     showQuestion();
 }
 function showQuestion() {
