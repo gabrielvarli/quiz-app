@@ -9,7 +9,7 @@ const questions = [
         ]
     },
     {
-        question: 'vart bor det mest invånare i Sverige ?' ,
+        question: 'Vart bor det mest invånare i Sverige ?' ,
         answers: [
             {text: 'Göteborg', correct: false},
             {text: 'Stockholm', correct: true},
@@ -36,57 +36,57 @@ const questions = [
         ]
     },
     {
-        question: 'Vilka färger är med i Sveriges flagga ?' ,
+        question: 'Vilket är Sveriges nationaldjur? ?' ,
         answers: [
-            {text: 'Röd', correct: false},
-            {text: 'Blå', correct: true},
-            {text: 'Gul', correct: true},
-            {text: 'Lila', correct: false},
+            {text: 'Hjort', correct: false},
+            {text: 'Räv', correct: false},
+            {text: 'Älg', correct: true},
+            {text: 'Björn', correct: false},
         ]
     },
     {
-        question: 'Hur många invånare bor det i Sverige ?' ,
+        question: 'Vilket år gick Sverige med i EU??' ,
         answers: [
-            {text: '8 miljoner', correct: false},
-            {text: '10 miljoner', correct: true},
-            {text: '9 miljoner', correct: false},
-            {text: '11 miljoner', correct: false},
+            {text: '1952', correct: false},
+            {text: '1995', correct: true},
+            {text: '1999', correct: false},
+            {text: '2001', correct: false},
         ]
     },
     {
-        question: 'Hur många invånare bor det i Sverige ?' ,
+        question: 'Vem var Sveriges första kung? ?' ,
         answers: [
-            {text: '8 miljoner', correct: false},
-            {text: '10 miljoner', correct: true},
-            {text: '9 miljoner', correct: false},
-            {text: '11 miljoner', correct: false},
+            {text: 'Olof Skötkonung', correct: true},
+            {text: 'Magnus Ladulås', correct: false},
+            {text: 'Birger Jarl', correct: false},
+            {text: 'Harald Blåtand', correct: false},
         ]
     },
     {
-        question: 'Hur många invånare bor det i Sverige ?' ,
+        question: 'Vad heter Sveriges största sjö ?' ,
         answers: [
-            {text: '8 miljoner', correct: false},
-            {text: '10 miljoner', correct: true},
-            {text: '9 miljoner', correct: false},
-            {text: '11 miljoner', correct: false},
+            {text: 'Siljan', correct: false},
+            {text: 'Mälaren', correct: false},
+            {text: 'Vättern', correct: false},
+            {text: 'Vänern', correct: true},
         ]
     },
     {
-        question: 'Hur många invånare bor det i Sverige ?' ,
+        question: 'Vilken husregel är mest "helig" i Sverige?' ,
         answers: [
-            {text: '8 miljoner', correct: false},
-            {text: '10 miljoner', correct: true},
-            {text: '9 miljoner', correct: false},
-            {text: '11 miljoner', correct: false},
+            {text: 'Alla har sin bestämda plats vid matbordet', correct: false},
+            {text: 'Inget ätande framför TV:n', correct: false},
+            {text: 'Alla måste städa/diska efter sig', correct: false},
+            {text: 'Ta av skorna inomhus', correct: true},
         ]
     },
     {
-        question: 'Hur många invånare bor det i Sverige ?' ,
+        question: 'Hur stor del av Sveriges yta täcks av träd ?' ,
         answers: [
-            {text: '8 miljoner', correct: false},
-            {text: '10 miljoner', correct: true},
-            {text: '9 miljoner', correct: false},
-            {text: '11 miljoner', correct: false},
+            {text: '2/4', correct: false},
+            {text: '1/3', correct: false},
+            {text: '2/3', correct: true},
+            {text: '1/4', correct: false},
         ]
     },
 ]
