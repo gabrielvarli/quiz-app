@@ -6,16 +6,18 @@ const questions = [
             {text: 'Stockholm', correct: true},
             {text: 'Malmö', correct: false},
             {text: 'Örebro', correct: false},
-        ]
+        ],
+        facts: 'Stockholm blev under 1600-talet Sveriges huvudstad i verklig mening. Mellan 1610 och 1680 ökade invånarantalet från 10 000 till 60 000. Statens handelspolitik gynnade systematiskt Stockholm.',
     },
     {
         question: 'Vart bor det mest invånare i Sverige ?' ,
         answers: [
             {text: 'Göteborg', correct: false},
             {text: 'Stockholm', correct: true},
-            {text: 'Malmö', correct: false},
-            {text: 'Örebro', correct: false},
-        ]
+            //{text: 'Malmö', correct: false},
+            //{text: 'Örebro', correct: false},
+        ],
+        facts: 'Stockholm är Sveriges största stad med flest invånare',
     },
     {
         question: 'Hur många invånare bor det i Stockholm ?' ,
@@ -24,16 +26,18 @@ const questions = [
             {text: '1,6 miljoner', correct: true},
             {text: '1 miljon', correct: false},
             {text: '2 miljoner', correct: false},
-        ]
+        ],
+        facts: 'Antalet invånare inom Stockholms kommun är nära 1 miljon, medan det i den kommunöverskridande tätorten finns över 1,6 miljoner.',
     },
     {
-        question: 'Vem är Sveries genom tiderna bästa fotbollsspelare ?' ,
+        question: 'Vem är Sveries  bästa fotbollsspelare genom tiderna ?' ,
         answers: [
             {text: 'Henrik Larsson', correct: false},
             {text: 'Zlatan Ibrahimovic', correct: true},
             {text: 'Martin Mutumba', correct: false},
             {text: 'John Gudetti', correct: false},
-        ]
+        ],
+        facts: 'De flesta håller med om att Zlatan är den främsta svenske fotbollsspelaren genom tiderna. Faktum är att han fortfarande är en av de bästa fotbollsspelarna i hela världen, trots att han har passerat 40. Fantastiskt, eller hur?',
     },
     {
         question: 'Vilket är Sveriges nationaldjur? ?' ,
@@ -42,16 +46,18 @@ const questions = [
             {text: 'Räv', correct: false},
             {text: 'Älg', correct: true},
             {text: 'Björn', correct: false},
-        ]
+        ],
+        facts: 'Älgen nämns oftast som Sveriges nationaldjur, även om det inte är officiellt. Sedan lång tid tillbaka har älgen varit en symbol för Sverige, i synnerhet när det kommer till souvenirer och marknadsföringen av Sverige i utlandet. Det finns omkring 300 000 - 400 000 älgar i Sverige.',
     },
     {
         question: 'Vilket år gick Sverige med i EU??' ,
         answers: [
-            {text: '1952', correct: false},
+            //{text: '1952', correct: false},
             {text: '1995', correct: true},
             {text: '1999', correct: false},
-            {text: '2001', correct: false},
-        ]
+            //{text: '2001', correct: false},
+        ],
+        facts: 'Sverige gick med i EU år 1995 i januari månad efter en folkomröstning 1994 där majoriteten röstade ja till medlemskap i EU. ',
     },
     {
         question: 'Vem var Sveriges första kung? ?' ,
@@ -60,7 +66,8 @@ const questions = [
             {text: 'Magnus Ladulås', correct: false},
             {text: 'Birger Jarl', correct: false},
             {text: 'Harald Blåtand', correct: false},
-        ]
+        ],
+        facts: 'Olof Skötkonung brukar tillskrivas titeln som Sveriges första kung. Han var son till Erik Segersäll, som också han var en svensk kung, men inte över ett samlat rike, utan enbart kung över en större del av det som skulle komma att bli det tidigmedeltida Sverige. Olof Skötkonung var även Sveriges första kristna kung och han bidrog till kristnandet av landet. ',
     },
     {
         question: 'Vad heter Sveriges största sjö ?' ,
@@ -69,7 +76,8 @@ const questions = [
             {text: 'Mälaren', correct: false},
             {text: 'Vättern', correct: false},
             {text: 'Vänern', correct: true},
-        ]
+        ],
+        facts: 'Vänern är Sveriges största sjö med en yta på 5 450 km² och en volym på 153 km³, vilket även gör det till Europas tredje största insjö, efter Ladoga och Onega.',
     },
     {
         question: 'Vilken husregel är mest "helig" i Sverige?' ,
@@ -78,7 +86,8 @@ const questions = [
             {text: 'Inget ätande framför TV:n', correct: false},
             {text: 'Alla måste städa/diska efter sig', correct: false},
             {text: 'Ta av skorna inomhus', correct: true},
-        ]
+        ],
+        facts: 'Samtliga fyra är relativt vanliga oskrivna husregler i Sverige, men det är en av dem som sticker ut som extra viktig och det är att man alltid ska ta av sig skorna när man kommer hem till någon.',
     },
     {
         question: 'Hur stor del av Sveriges yta täcks av träd ?' ,
@@ -87,7 +96,8 @@ const questions = [
             {text: '1/3', correct: false},
             {text: '2/3', correct: true},
             {text: '1/4', correct: false},
-        ]
+        ],
+        facts: '2/3 delar av Sveriges yta täcks för närvarande av träd. Det är dock inte urskog det handlar om, utan majoriteten av alla träd står i olika trädplantage med monokultur. ',
     },
 ]
 
@@ -95,6 +105,7 @@ const questions = [
 const questionElement = document.getElementById("question");
 const answerButtons = document.getElementById("answer-buttons");
 const nextButton = document.getElementById('next-btn');
+const faktaElement= document.getElementById("fakta-text");
 
 // antal frågor och poäng
 let currentQuestionIndex = 0;
@@ -113,6 +124,7 @@ function showQuestion() {
     let currentQuestion = questions[currentQuestionIndex];
     let questionNo = currentQuestionIndex + 1;
     questionElement.innerHTML = questionNo + ". " + currentQuestion.question;
+    faktaElement.innerHTML = currentQuestion.facts;
 
     // denna visar svaren (texten)
     currentQuestion.answers.forEach(answer => {
@@ -123,11 +135,12 @@ function showQuestion() {
         if(answer.correct){
             button.dataset.correct = answer.correct; 
         }
-        button.addEventListener("click",selectAnswer);
+        button.addEventListener("click", selectAnswer);
     }) 
 }
 // den tar bort gamla frågan och svar
 function resetState(){
+    faktaElement.style.display = "none";
     nextButton.style.display = "none";
     while(answerButtons.firstChild){
         answerButtons.removeChild(answerButtons.firstChild);
@@ -152,6 +165,7 @@ function selectAnswer(e) {
         }
         button.disabled = true;
     });
+    faktaElement.style.display = "block";
     nextButton.style.display = "block";
 
 }
@@ -159,7 +173,6 @@ function selectAnswer(e) {
 // samt bedömmer dig med färg o text om du har fått godkänd. 
 function showScore(){
     resetState();
-    // Display the user's score
     const scoreElement = document.getElementById("question");
     if (score < 5) {
         scoreElement.style.color = "#ff0000"; // red
